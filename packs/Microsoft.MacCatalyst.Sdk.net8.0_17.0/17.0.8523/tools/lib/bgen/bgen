@@ -1,1 +1,0 @@
-exec /Users/builder/azdo/_work/1/s/xamarin-macios/builds/downloads/dotnet-sdk-8.0.102-servicing.24073.3/dotnet "$(dirname "$0")"/bgen.dll $@

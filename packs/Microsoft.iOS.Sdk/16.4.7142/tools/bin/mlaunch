@@ -1,7 +1,0 @@
-#!/bin/bash -e
-
-pushd "$(dirname "$0")" > /dev/null
-SCRIPTPATH=$(pwd -P)
-popd > /dev/null
-
-exec "$SCRIPTPATH/../lib/mlaunch/mlaunch.app/Contents/MacOS/mlaunch" "$@"

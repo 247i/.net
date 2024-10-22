@@ -1,3 +1,0 @@
-<FileList Name="Microsoft MacCatalyst - NET 8.0" TargetFrameworkIdentifier=".NETCoreApp" TargetFrameworkVersion="8.0" FrameworkName="Microsoft.MacCatalyst">
-  <File Type="Managed" Path="ref/net8.0/Microsoft.MacCatalyst.dll" AssemblyName="Microsoft.MacCatalyst" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="18.0.0.0" FileVersion="0.0.0.0" Profile="MacCatalyst" />
-</FileList>
