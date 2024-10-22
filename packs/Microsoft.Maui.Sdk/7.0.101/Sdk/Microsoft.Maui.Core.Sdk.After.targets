@@ -1,0 +1,27 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- TODO: workaround https://github.com/xamarin/xamarin-android/issues/6809#issuecomment-1061115254 -->
+    <MSBuildWarningsAsMessages Condition=" '$(TargetPlatformIdentifier)' == 'Android' ">$(MSBuildWarningsAsMessages);XA4218</MSBuildWarningsAsMessages>
+  </PropertyGroup>
+
+  <!--
+    Workaround for https://github.com/NuGet/Home/issues/6461
+    By default, Android and iOS set the Version property, so we need to do the same for Windows.
+    This also has to be done outside of the NuGets as this affects the NuGet restore.
+  -->
+  <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == 'windows' and '$(OutputType)' == 'WinExe' ">
+    <Version Condition=" $([System.Version]::TryParse ('$(ApplicationDisplayVersion)', $([System.Version]::Parse('1.0')))) ">$(ApplicationDisplayVersion)</Version>
+  </PropertyGroup>
+
+  <!--
+    This double check seems excessive, but importing the WinUI.targets when building for windows is not
+    sufficient. The WASDK targets assume everything is WinUI and thus just passes along the TFM of the app.
+    As a result, if you have a net6.0 class library, the app will call MSBuild on that library - with the Windows TFM!
+    This results in the $(TargetPlatformIdentifier) condition being met - even though there are no WASK targets to run!
+  -->
+  <Import Project="WinUI.targets" Condition=" '$(TargetPlatformIdentifier)' == 'windows' and '$(MicrosoftWindowsAppSDKPackageDir)' != '' " />
+
+  <Import Project="Microsoft.Maui.Core.targets" />
+
+</Project>

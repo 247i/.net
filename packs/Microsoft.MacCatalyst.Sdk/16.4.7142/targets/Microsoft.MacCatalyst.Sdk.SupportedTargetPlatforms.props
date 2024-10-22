@@ -1,0 +1,27 @@
+<!-- This file contains a generated list of the MacCatalyst platform versions that are supported for this SDK -->
+<!-- Generation script: https://github.com/xamarin/xamarin-macios/blob/main/dotnet/generate-target-platforms.csharp -->
+<Project>
+	<ItemGroup>
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="13.1" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="13.2" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="13.3" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="13.4" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="13.5" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="14.2" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="14.3" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="14.4" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="14.5" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="15.0" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="15.2" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="15.4" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="16.1" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="16.2" />
+		<MacCatalystSdkSupportedTargetPlatformVersion Include="16.4" />
+	</ItemGroup>
+	<ItemGroup>
+		<SdkSupportedTargetPlatformVersion Condition="'$(TargetPlatformIdentifier)' == 'MacCatalyst'" Include="@(MacCatalystSdkSupportedTargetPlatformVersion)" />
+	</ItemGroup>
+	<PropertyGroup>
+		<MacCatalystMinSupportedOSPlatformVersion>13.1</MacCatalystMinSupportedOSPlatformVersion>
+	</PropertyGroup>
+</Project>

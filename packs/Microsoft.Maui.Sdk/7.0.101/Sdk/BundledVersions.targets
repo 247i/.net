@@ -1,0 +1,136 @@
+<Project>
+
+  <PropertyGroup>
+    <_MauiRuntimePackVersion>$(MauiVersion)</_MauiRuntimePackVersion>
+    <_MauiRuntimePackVersion Condition=" '$(_MauiRuntimePackVersion)' == '' ">**FromWorkload**</_MauiRuntimePackVersion>
+    <MauiWorkloadVersion>7.0.101</MauiWorkloadVersion>
+    <MauiWorkloadTargetFramework>net7.0</MauiWorkloadTargetFramework>
+    <MauiVersion Condition=" '$(MauiVersion)' == '' ">$(MauiWorkloadVersion)</MauiVersion>
+    <!-- $(_MauiPlatformName) is used as RIDs as well as a suffix to targeting pack names -->
+    <_MauiPlatformName Condition=" '$(TargetPlatformIdentifier)' == 'windows' ">win</_MauiPlatformName>
+    <_MauiPlatformName Condition=" '$(TargetPlatformIdentifier)' != 'windows' ">$(TargetPlatformIdentifier.ToLowerInvariant())</_MauiPlatformName>
+    <_MauiPlatformName Condition=" '$(_MauiPlatformName)' == '' ">any</_MauiPlatformName>
+    <_MauiRuntimePackAlwaysCopyLocal Condition=" '$(_MauiPlatformName)' == 'any' ">true</_MauiRuntimePackAlwaysCopyLocal>
+  </PropertyGroup>
+
+  <!-- Framework references -->
+  <ItemGroup>
+    <KnownFrameworkReference
+        Condition=" '$(UseMaui)' == 'true' or '$(UseMauiCore)' == 'true' "
+        Include="Microsoft.Maui.Core"
+        TargetFramework="$(MauiWorkloadTargetFramework)"
+        RuntimeFrameworkName="Microsoft.Maui.Core"
+        DefaultRuntimeFrameworkVersion="$(_MauiRuntimePackVersion)"
+        LatestRuntimeFrameworkVersion="$(_MauiRuntimePackVersion)"
+        TargetingPackName="Microsoft.Maui.Core.Ref.$(_MauiPlatformName)"
+        TargetingPackVersion="$(_MauiRuntimePackVersion)"
+        RuntimePackNamePatterns="Microsoft.Maui.Core.Runtime.**RID**"
+        RuntimePackRuntimeIdentifiers="$(_MauiPlatformName)"
+        Profile="$(TargetPlatformIdentifier)"
+        RuntimePackAlwaysCopyLocal="$(_MauiRuntimePackAlwaysCopyLocal)"
+    />
+    <KnownFrameworkReference
+        Condition=" '$(UseMaui)' == 'true' "
+        Include="Microsoft.Maui.Controls"
+        TargetFramework="$(MauiWorkloadTargetFramework)"
+        RuntimeFrameworkName="Microsoft.Maui.Controls"
+        DefaultRuntimeFrameworkVersion="$(_MauiRuntimePackVersion)"
+        LatestRuntimeFrameworkVersion="$(_MauiRuntimePackVersion)"
+        TargetingPackName="Microsoft.Maui.Controls.Ref.$(_MauiPlatformName)"
+        TargetingPackVersion="$(_MauiRuntimePackVersion)"
+        RuntimePackNamePatterns="Microsoft.Maui.Controls.Runtime.**RID**"
+        RuntimePackRuntimeIdentifiers="$(_MauiPlatformName)"
+        Profile="$(TargetPlatformIdentifier)"
+        RuntimePackAlwaysCopyLocal="$(_MauiRuntimePackAlwaysCopyLocal)"
+    />
+    <KnownFrameworkReference
+        Condition=" '$(UseMaui)' == 'true' or '$(UseMauiEssentials)' == 'true' "
+        Include="Microsoft.Maui.Essentials"
+        TargetFramework="$(MauiWorkloadTargetFramework)"
+        RuntimeFrameworkName="Microsoft.Maui.Essentials"
+        DefaultRuntimeFrameworkVersion="$(_MauiRuntimePackVersion)"
+        LatestRuntimeFrameworkVersion="$(_MauiRuntimePackVersion)"
+        TargetingPackName="Microsoft.Maui.Essentials.Ref.$(_MauiPlatformName)"
+        TargetingPackVersion="$(_MauiRuntimePackVersion)"
+        RuntimePackNamePatterns="Microsoft.Maui.Essentials.Runtime.**RID**"
+        RuntimePackRuntimeIdentifiers="$(_MauiPlatformName)"
+        Profile="$(TargetPlatformIdentifier)"
+        RuntimePackAlwaysCopyLocal="$(_MauiRuntimePackAlwaysCopyLocal)"
+    />
+  </ItemGroup>
+
+  <!-- These implicit <PackageReference/> pull dependencies from NuGet transitively -->
+  <ItemGroup Condition=" ('$(UseMaui)' == 'true' or '$(UseMauiCore)' == 'true') and ('$(DisableMauiImplicitPackageReferences)' != 'true') ">
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(UseMaui)' == 'true' or '$(UseMauiCore)' == 'true' or '$(UseMauiEssentials)' == 'true') and ('$(DisableMauiImplicitPackageReferences)' != 'true') ">
+    <PackageReference Include="Microsoft.Maui.Graphics" Version="$(MauiVersion)" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(UseMaui)' == 'true' or '$(UseMauiCore)' == 'true'  or '$(UseMauiEssentials)' == 'true') and ('$(TargetPlatformIdentifier)' == 'android') and ('$(DisableMauiImplicitPackageReferences)' != 'true') ">
+    <PackageReference Include="Xamarin.Android.Glide" Version="4.13.2.2" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Browser" Version="1.4.0.3" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0.15" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.5.1.1" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Navigation.UI" Version="2.5.2.1" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment" Version="2.5.2.1" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Runtime" Version="2.5.2.1" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Common" Version="2.5.2.1" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Security.SecurityCrypto" Version="1.1.0-alpha03" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Crypto.Tink.Android" Version="1.7.0.1" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(UseMaui)' == 'true' or '$(UseMauiCore)' == 'true' or '$(UseMauiEssentials)' == 'true') and ('$(TargetPlatformIdentifier)' == 'tizen') and ('$(DisableMauiImplicitPackageReferences)' != 'true') ">
+    <PackageReference Include="Tizen.UIExtensions.NUI" Version="0.9.0" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Maui.Graphics.Skia" Version="$(MauiVersion)" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' ">all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(UseMaui)' == 'true' and '$(UsingMicrosoftNETSdkRazor)' == 'true') and ('$(DisableMauiImplicitPackageReferences)' != 'true') ">
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="$(MauiVersion)" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' and '$(AndroidApplication)' != 'true' ">all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition=" ('$(UseMaui)' == 'true' or '$(UseMauiCore)' == 'true') and ('$(TargetPlatformIdentifier)' == 'windows') and ('$(DisableMauiImplicitPackageReferences)' != 'true') ">
+    <PackageReference Include="Microsoft.Maui.Graphics.Win2D.WinUI.Desktop" Version="$(MauiVersion)" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' ">all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" IsImplicitlyDefined="true">
+      <PrivateAssets Condition=" '$(OutputType)' == 'Library' ">all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

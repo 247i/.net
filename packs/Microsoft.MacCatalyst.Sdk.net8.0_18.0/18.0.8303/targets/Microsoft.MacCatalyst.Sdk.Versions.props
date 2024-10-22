@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<CurrentBranch>release/8.0.1xx-xcode16.0</CurrentBranch>
+		<CurrentHash>a8d7eab24d26b7d2b75dee10a219fa0312f600f2</CurrentHash>
+
+		<_ShortPackageVersion>18.0.8303</_ShortPackageVersion>
+		<_PackageVersion>18.0.8303</_PackageVersion>
+		<_XamarinTargetPlatformVersion>18.0</_XamarinTargetPlatformVersion>
+		<_XamarinIsPreviewRelease>false</_XamarinIsPreviewRelease>
+		<_XamarinDotNetVersion>net8.0</_XamarinDotNetVersion>
+		<_XamarinPackSuffix>net8.0_18.0</_XamarinPackSuffix>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<_XamarinValidRuntimeIdentifier Include="maccatalyst-x64" Platform="MacCatalyst" /> 
+		<_XamarinValidRuntimeIdentifier Include="maccatalyst-arm64" Platform="MacCatalyst" />
+	</ItemGroup>
+
+	<!-- Declare the XI/XM framework bundled with this version of the SDK. See Microsoft.NETCoreSdk.BundledVersions.props -->
+	<ItemGroup>
+		<KnownFrameworkReference
+			Include="Microsoft.MacCatalyst"
+			TargetFramework="net8.0"
+			RuntimeFrameworkName="Microsoft.MacCatalyst"
+			DefaultRuntimeFrameworkVersion="18.0.8303"
+			LatestRuntimeFrameworkVersion="18.0.8303"
+			TargetingPackName="Microsoft.MacCatalyst.Ref.net8.0_18.0"
+			TargetingPackVersion="18.0.8303"
+			RuntimePackNamePatterns="Microsoft.MacCatalyst.Runtime.**RID**.net8.0_18.0"
+			RuntimePackRuntimeIdentifiers="maccatalyst-x64;maccatalyst-arm64"
+			Profile="MacCatalyst"
+		/>
+	</ItemGroup>
+</Project>

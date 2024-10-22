@@ -1,0 +1,9 @@
+<FileList Name=".NET 8.0 - Android" TargetFrameworkIdentifier=".NETCoreApp" TargetFrameworkVersion="8.0" FrameworkName="Microsoft.Android">
+  <File Type="Managed" Path="runtimes/android-arm64/lib/net8.0/Java.Interop.dll" AssemblyName="Java.Interop" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="7.0.0.0" FileVersion="7.0.0.130" Profile="Android" />
+  <File Type="Managed" Path="runtimes/android-arm64/lib/net8.0/Mono.Android.Export.dll" AssemblyName="Mono.Android.Export" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="1.0.0.0" FileVersion="1.0.0.0" Profile="Android" />
+  <File Type="Managed" Path="runtimes/android-arm64/lib/net8.0/Mono.Android.Runtime.dll" AssemblyName="Mono.Android.Runtime" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="0.0.0.0" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Managed" Path="runtimes/android-arm64/lib/net8.0/Mono.Android.dll" AssemblyName="Mono.Android" PublicKeyToken="84e04ff9cfb79065" AssemblyVersion="0.0.0.0" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libmono-android.debug.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libmono-android.release.so" FileVersion="0.0.0.0" Profile="Android" />
+  <File Type="Native" Path="runtimes/android-arm64/native/libxamarin-debug-app-helper.so" FileVersion="0.0.0.0" Profile="Android" />
+</FileList>

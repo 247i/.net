@@ -1,0 +1,31 @@
+﻿<!--
+***********************************************************************************************
+Microsoft.Android.Sdk.SupportedPlatforms.targets
+
+Specifies the supported Android platform versions for this SDK.
+
+***********************************************************************************************
+-->
+<Project>
+  <PropertyGroup>
+    <TargetPlatformSupported>true</TargetPlatformSupported>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">33.0</TargetPlatformVersion>
+    <AndroidMinimumSupportedApiLevel Condition=" '$(AndroidMinimumSupportedApiLevel)' == '' ">21</AndroidMinimumSupportedApiLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <AndroidSdkSupportedTargetPlatformVersion Include="21.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="22.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="23.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="24.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="25.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="26.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="27.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="28.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="29.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="30.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="31.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="32.0" />
+    <AndroidSdkSupportedTargetPlatformVersion Include="33.0" />
+    <SdkSupportedTargetPlatformVersion Include="@(AndroidSdkSupportedTargetPlatformVersion)" />
+  </ItemGroup>
+</Project>

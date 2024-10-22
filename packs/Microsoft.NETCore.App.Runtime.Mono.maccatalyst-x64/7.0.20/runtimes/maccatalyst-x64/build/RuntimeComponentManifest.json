@@ -1,0 +1,18 @@
+{
+    "items": {
+        "_MonoRuntimeComponentLinking": [
+            { "identity": "static", "RuntimeIdentifier": "MacCatalyst-x64" },
+        ],
+        "_MonoRuntimeComponentSharedLibExt": [
+            { "identity": ".dylib", "RuntimeIdentifier": "MacCatalyst-x64" },
+        ],
+        "_MonoRuntimeComponentStaticLibExt": [
+            { "identity": ".a", "RuntimeIdentifier": "MacCatalyst-x64" },
+        ],
+        "_MonoRuntimeAvailableComponents": [
+            { "identity": "debugger", "RuntimeIdentifier": "MacCatalyst-x64" },
+{ "identity": "hot_reload", "RuntimeIdentifier": "MacCatalyst-x64" },
+{ "identity": "diagnostics_tracing", "RuntimeIdentifier": "MacCatalyst-x64" },
+        ],
+    }
+}
